@@ -38,7 +38,7 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.682
                   comment = "😱は？"
                 }
                 kansou.innerHTML = comment
-                kion.innerHTML = data.hourly.temperature_2m[length]
+                kion.innerHTML = data.hourly.temperature_2m[length] + "℃"
              }
              console.log(new Date().getHours())
           }
