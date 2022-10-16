@@ -11,11 +11,29 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.682
     for(i of data.hourly.time){
         //0---4/67/90T
         //YYYY-DD-MMTHH:MM
+        console.log(i)
+
+        let basemath = Number(i.substring(6,7))
+        let basemath2 = Number(i.substring(8,10))
+        let basemath3 = +(i.substring(11,13))
+
+        let tf = false
+
+        if(+(i.substring(6,7)) === 0){
+          basemath = +(i.substring(5,7))
+          basemath2 = +(i.substring(8,10))
+          basemath3 = +(i.substring(11,13))
+          tf = true
+        }
+
+        console.log(basemath,basemath2,basemath3,tf,i.substring(5,7),i.substring(8,10))
         
-        if(Number(i.substring(6,7)) === Number(new Date().getMonth() + 1)){
-          if(Number(i.substring(8,10)) === Number(new Date().getDate().toString().slice(-2))){
+        if(basemath === Number(new Date().getMonth() + 1)){
+          //console.log(i)
+          if(basemath2 === Number(new Date().getDate().toString().slice(-2))){
+            console.log(i)
              labels.push(i)
-             if(Number(i.substring(11,13)) === Number(new Date().getHours())){
+             if(basemath3 === Number(new Date().getHours())){
                 console.log(data.hourly.temperature_2m[length])
                 //めも
                 /** 
