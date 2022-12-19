@@ -1,6 +1,6 @@
 var kion = document.getElementById("kion")
 var kansou = document.getElementById("kansou")
-
+var debug = "";
 
 fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&hourly=temperature_2m&timezone=Asia%2FTokyo')
 .then(response => response.json())
@@ -17,16 +17,18 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.682
         let basemath2 = Number(i.substring(8,10))
         let basemath3 = +(i.substring(11,13))
 
+        //console.log(basemath)
+
         let tf = false
 
-        if(+(i.substring(6,7)) === 0){
+        if(+(i.substring(5,6)) === 1){
           basemath = +(i.substring(5,7))
           basemath2 = +(i.substring(8,10))
           basemath3 = +(i.substring(11,13))
           tf = true
         }
 
-        console.log(basemath,basemath2,basemath3,tf,i.substring(5,7),i.substring(8,10))
+        debug += basemath+"b / "+basemath2+"b2 / "+basemath3+"b3 / "+tf+"tf / "+i.substring(5,7)+" / "+i.substring(8,10)+"\n"
         
         if(basemath === Number(new Date().getMonth() + 1)){
           //console.log(i)
@@ -78,4 +80,6 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.682
         type: 'line',
         data: mydata,
     });
+    console.log(data)
+    console.log(debug)
 })
